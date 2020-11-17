@@ -353,3 +353,15 @@ export const updateKnowledgeGraphMetadata = ({ resultClass, data, sparqlQuery })
   data,
   sparqlQuery
 })
+
+export const updateSituationFilter = ({query, selectedSituation}) => {
+  console.log('updateSituationFilter')
+  return {
+          type: 'UPDATE_FILTER',
+          resultClass: 'situations',
+          query,
+          selectedSituation
+      }
+
+
+}

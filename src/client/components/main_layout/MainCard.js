@@ -60,7 +60,8 @@ const MainCard = props => {
   // const smScreen = useMediaQuery(theme => theme.breakpoints.between('sm', 'md'))
   const externalPerspective = has(perspective, 'externalUrl')
   const card = has(perspective, 'frontPageElement') && perspective.frontPageElement === 'card'
-  const searchMode = perspective.id.startsWith('clientFS') ? 'federated-search' : 'faceted-search'
+  let searchMode = perspective.id.startsWith('clientFS') ? 'federated-search' : 'faceted-search'
+  searchMode = perspective.id.startsWith('situations') ? 'iterative-search' : searchMode
 
   return (
     <Grid

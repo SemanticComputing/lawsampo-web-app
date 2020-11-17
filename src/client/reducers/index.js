@@ -12,8 +12,12 @@ import statutesFacets from './lawsampo/statutesFacets'
 import statutesFacetsConstrainSelf from './lawsampo/statutesFacetsConstrainSelf'
 import caselawFacets from './lawsampo/caselawFacets'
 import caselawFacetsConstrainSelf from './lawsampo/caselawFacetsConstrainSelf'
+import situations from './lawsampo/situations'
+import situationsFacets from './lawsampo/situationsFacets'
 
 const reducer = combineReducers({
+  situations,
+  situationsFacets,
   statutes,
   caselaw,
   statutesFacets,
@@ -26,5 +30,6 @@ const reducer = combineReducers({
   error,
   toastr: toastrReducer
 })
+
 
 export default reducer

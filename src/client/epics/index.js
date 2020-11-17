@@ -157,6 +157,8 @@ const fetchResultCountEpic = (action$, state$) => action$.pipe(
   withLatestFrom(state$),
   mergeMap(([action, state]) => {
     const { resultClass, facetClass } = action
+    if(resultClass === 'situations')
+      return []
     const params = stateToUrl({
       facets: state[`${facetClass}Facets`].facets
     })
@@ -501,6 +503,8 @@ const fetchKnowledgeGraphMetadataEpic = (action$, state$) => action$.pipe(
   })
 )
 
+import { fetchSituations } from './situations'
+
 const rootEpic = combineEpics(
   fetchPaginatedResultsEpic,
   fetchResultsEpic,
@@ -514,7 +518,8 @@ const rootEpic = combineEpics(
   fetchSimilarDocumentsEpic,
   fetchGeoJSONLayersEpic,
   fetchGeoJSONLayersBackendEpic,
-  fetchKnowledgeGraphMetadataEpic
+  fetchKnowledgeGraphMetadataEpic,
+  fetchSituations,
 )
 
 export default rootEpic

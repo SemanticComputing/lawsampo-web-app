@@ -96,7 +96,7 @@ class ResultTable extends React.Component {
     this.props.updatePage(this.props.resultClass, page)
     /*
     history.push({
-      pathname: `${this.props.rootUrl}/${this.props.resultClass}/faceted-search/table`,
+      pathname: `${this.props.rootUrl}/${this.props.resultClass}/iterative-search/table`,
       search: `?page=${page}`
     })
     */
@@ -113,7 +113,7 @@ class ResultTable extends React.Component {
       this.fetchResults()
       /*
       history.push({
-        pathname: `${this.props.rootUrl}/${this.props.resultClass}/faceted-search/table`,
+        pathname: `${this.props.rootUrl}/${this.props.resultClass}/iterative-search/table`,
         search: `?page=${this.props.data.page}`
       })
       */
