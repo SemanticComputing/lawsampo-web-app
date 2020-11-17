@@ -12,6 +12,38 @@ import caselawImage from '../../img/lawsampo/caselaw.png'
 
 export const perspectiveConfig = [
   {
+    id: 'situations',
+    //frontPageImage: legislationImage,
+    frontPageElement: 'card',
+    perspectiveDescHeight: 160,
+    defaultActiveFacets: new Set(['situationFilters']),
+    tabs: [
+      {
+        id: 'statutes',
+        value: 0,
+        icon: <CalendarViewDayIcon />
+      },
+      {
+        id: 'cases',
+        value: 1,
+        icon: <CloudDownloadIcon />
+      }
+    ],
+    instancePageTabs: [
+      {
+        id: 'table',
+        value: 0,
+        icon: <CalendarViewDayIcon />
+      },
+
+      {
+        id: 'export',
+        value: 1,
+        icon: <CloudDownloadIcon />
+      }
+    ]
+  },  
+  {
     id: 'statutes',
     frontPageImage: legislationImage,
     frontPageElement: 'card',

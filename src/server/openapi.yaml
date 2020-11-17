@@ -450,7 +450,23 @@ paths:
             application/json:
               schema:
                 type: object              
-
+  /classifier:
+    post:
+      summary: Get classifications
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+              type: object
+      
+      responses:
+        '200':
+          description: Custom response
+          content:
+            application/json:
+              schema:
+                type: object 
 
         
 
