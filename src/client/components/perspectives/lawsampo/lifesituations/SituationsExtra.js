@@ -11,7 +11,6 @@ import FormControl from '@material-ui/core/FormControl'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import Paper from '@material-ui/core/Paper'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
-import purple from '@material-ui/core/colors/purple'
 
 import SortableTree, { changeNodeAtPath } from 'react-sortable-tree'
 import FileExplorerTheme from 'react-sortable-tree-theme-file-explorer'
@@ -20,12 +19,11 @@ import Typography from '@material-ui/core/Typography'
 import Checkbox from '@material-ui/core/Checkbox'
 import Chip from '@material-ui/core/Chip'
 import Tooltip from '@material-ui/core/Tooltip'
-import { Radio, RadioGroup } from '@material-ui/core'
 
 
 
-const styles = theme => ({
-  
+
+const styles = () => ({
   facetSearchContainer: {
     width: '100%',
     height: 44,
@@ -59,48 +57,32 @@ const styles = theme => ({
   },
   facetLink: {
     textDecoration: 'inherit'
-  },
-  chip: {
-    margin: theme.spacing(0.5),
   }
 })
 
 /**
  * A component for text search in client-side faceted search architecture.
  */
-class SituationsKeywords extends React.Component {
+class SituationsExtra extends React.Component {
 
-  constructor (props) {
-      super(props)
-      this.state = {
-        treeData: this.props.keywords,
-        selectedKeyword: null
-      }
-  }
+    constructor (props) {
+        super(props)
+        this.state = {
+          treeData: []
+        }
+    }
 
-  componentDidUpdate = prevProps => {
-    
-  
-    if (prevProps.keywords !== this.props.keywords ||
-      prevProps.isFetching !== this.props.isFetching) {
-      this.setState({
-        selectedKeyword: null,
-        treeData: this.props.keywords
-      })
-    } 
-       
-  }
+    componentDidUpdate = prevProps => {      
+      if (prevProps.values !== this.props.values) {
+        this.setState({
+          treeData: this.props.values
+        })
+      }      
+    }
 
 
-
-  handleCheckboxChange = treeObj => event => {
-    this.props.addSituationKeyword({keyword: treeObj.node})
-    this.props.fetchSituationResults()
-  }
-
-  handleChange = treeObj => event => {
-    this.setState({selectedKeyword: treeObj.node})
-    this.props.addSituationKeyword({keyword: treeObj.node})
+  handleCheckboxChange = treeObj => event => {    
+    this.props.addSituationExtra({value: treeObj.node})
     this.props.fetchSituationResults()
   }
 
@@ -113,7 +95,7 @@ class SituationsKeywords extends React.Component {
       </>
     )
   }
-/*
+
   generateNodeProps = treeObj => {
     const { node } = treeObj
 
@@ -135,43 +117,18 @@ class SituationsKeywords extends React.Component {
       )      
     }
   }
-  */
- generateNodeProps = treeObj => {
-  const { node } = treeObj
-
-  return {
-    title: (
-      <FormControlLabel
-      control={
-        <Radio 
-        onChange={this.handleChange(treeObj)}
-        />
-      }    
-        value={treeObj.node.id}
-        label={this.generateLabel(treeObj.node)}
-      />
-    )      
-  }
-}
-
+  
   handleDelete = item => () => {
-    this.props.removeSituationKeyword({facetClass: this.props.facetClass, keyword: item})
+    this.props.removeSituationExtra({value: item})
     this.props.fetchSituationResults()    
   }
 
   render () {    
-    const {selectedKeywords, isFetching, classes} = this.props
-    const {selectedKeyword} = this.state    
+    const selectedValues = this.props.selectedValues
     return (
       <>
-      {isFetching ? (
-        <div className={classes.spinnerContainer}>
-          <CircularProgress style={{ color: purple[500] }} thickness={5} />
-        </div>
-      ) : (
-          <>      
               <div className={''}>
-                {selectedKeywords !== null && selectedKeywords.map(item => {
+                {selectedValues !== null && selectedValues.map(item => {
                   const key = item
                   return (
                     <Tooltip key={key.id} title={key.id}>
@@ -179,7 +136,7 @@ class SituationsKeywords extends React.Component {
                         key={key.id}
                         //icon={icon}
                         label={key.name}
-                        className={classes.chip}
+                        //className={classes.chip}
                        onDelete={this.handleDelete(item)}
                         color='primary'
                       />
@@ -187,8 +144,7 @@ class SituationsKeywords extends React.Component {
                   )
                 })}
               </div>
-               <FormControl>
-               <RadioGroup value={selectedKeyword === null ? null : selectedKeyword.id}>
+              <div className={''}>
                 <SortableTree
                   treeData={this.state.treeData}
                   onChange={treeData => this.setState({ treeData })}
@@ -199,13 +155,12 @@ class SituationsKeywords extends React.Component {
                   generateNodeProps={this.generateNodeProps}
                   isVirtualized={false}
                 />
-                </RadioGroup>
-              </FormControl>
+              </div>
       </>
 
-    )}
-  </>
-    )}
+    )
+      
+  }
 }
 
-export default withStyles(styles)(SituationsKeywords)
+export default withStyles(styles)(SituationsExtra)

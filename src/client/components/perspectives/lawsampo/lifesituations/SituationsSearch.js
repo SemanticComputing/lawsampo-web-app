@@ -25,6 +25,9 @@ const styles = theme => ({
     marginBottom: theme.spacing(1),
     padding: theme.spacing(0.5)
   },
+  chip: {
+    margin: theme.spacing(0.5)
+  },
   headingContainer: {
     display: 'flex',
     alignItems: 'center',
@@ -73,18 +76,13 @@ const styles = theme => ({
 class SituationsSearch extends React.Component {
     constructor(props) {
         super(props)
-        console.log('test')
-        console.log(props)
         this.state = {
           query: props.query,
           selectedSituation: props.selectedSituation,
           treeData: props.situations 
-  
-  
       }
   
     }
-
 
     handleSituationChange = treeObj => event => {
         console.log(treeObj.node);
@@ -135,13 +133,16 @@ class SituationsSearch extends React.Component {
         if (event.key === 'Enter' && this.hasValidQuery()) {
           this.props.updateSituationQuery({query: this.state.query})
           this.props.fetchSituationResults()
+          this.setState({query: ''})
         }
       };
     
       handleSearchClick = () => {
         if (this.hasValidQuery()) {
+          
           this.props.updateSituationQuery({query: this.state.query})
           this.props.fetchSituationResults()
+          this.setState({query: ''})
         }
       };
     
@@ -166,7 +167,7 @@ class SituationsSearch extends React.Component {
         <div>
           <div className={classes.root}>
           <div className={classes.headingContainer}>
-            <Typography variant='body1'>Hae</Typography>
+            <Typography variant='body1'>Tekstihaku</Typography>
           </div>
             <FormControl className={classes.textSearch}>
             
@@ -186,11 +187,11 @@ class SituationsSearch extends React.Component {
             </div>
             <div className={classes.root}>
             <div className={classes.headingContainer}>
-            <Typography variant='body1'>Valitse</Typography>
+            <Typography variant='body1'>tai valitse pääkategoria:</Typography>
           </div>
 
             <FormControl>
-                <RadioGroup value={selectedSituation === null ? null : selectedSituation.id} onChange={this.handleChange}>
+                <RadioGroup value={selectedSituation === null ? null : selectedSituation.id} >
                   <SortableTree
                     treeData={this.state.treeData}
                     onChange={treeData => this.setState({ treeData })}

@@ -12,7 +12,7 @@ import Situations from './lifesituations/Situations'
 const FacetedSearchPerspective = props => {
   const renderPerspective = () => {
     let perspectiveElement = null
-    switch (props.perspective.id) {    
+    switch (props.perspective.id) {
       case 'statutes':
         perspectiveElement =
           <Statutes

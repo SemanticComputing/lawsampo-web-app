@@ -43,5 +43,4 @@ const reducer = combineReducers({
   toastr: toastrReducer
 })
 
-
 export default reducer

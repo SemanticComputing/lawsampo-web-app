@@ -18,7 +18,7 @@ const styles = () => ({
 /**
  * A component for generating view tabs for a faceted search perspective or an entity landing page.
  */
-class PerspectiveTabs extends React.Component {
+class SituationsPerspectiveTabs extends React.Component {
   constructor (props) {
     super(props)
     const value = this.pathnameToValue(this.props.routeProps.location.pathname)
@@ -29,6 +29,11 @@ class PerspectiveTabs extends React.Component {
     const newPath = this.props.routeProps.location.pathname
     const oldPath = prevProps.routeProps.location.pathname
     if (newPath !== oldPath) {
+      let page = 'statutes'
+      if(newPath.endsWith('cases'))
+        page ='cases'
+      this.props.updateResultType({resultType: page})
+      this.props.fetchSituationResults()
       this.setState({ value: this.pathnameToValue(newPath) })
     }
   }
@@ -44,7 +49,7 @@ class PerspectiveTabs extends React.Component {
     return value
   }
 
-  handleChange = (event, value) => {    
+  handleChange = (event, value) => {
     this.setState({ value })
   };
 
@@ -79,13 +84,7 @@ class PerspectiveTabs extends React.Component {
   }
 }
 
-PerspectiveTabs.propTypes = {
-  classes: PropTypes.object.isRequired,
-  routeProps: PropTypes.object.isRequired,
-  tabs: PropTypes.array.isRequired,
-  screenSize: PropTypes.string.isRequired
-}
 
-export const PerspectiveTabsComponent = PerspectiveTabs
 
-export default withStyles(styles)(PerspectiveTabs)
+
+export default withStyles(styles)(SituationsPerspectiveTabs)

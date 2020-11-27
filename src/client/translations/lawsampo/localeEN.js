@@ -172,45 +172,42 @@ export default {
       longDescription: 'Data provided by...',
       inputPlaceHolder: '',
       properties: {
-        statutesText: {
-          label: 'Kuvaile elämäntilanteesi',
-          description: ''
-        },
-        statutesSituation: {
-          label: 'tai valitse lähtökohta listasta',
-          description: ''
-        },        
-        statutesKeywords: {
-          label: 'Keywords',
-          description: ''
-        },
-        statutesCategory: {
-          label: 'Category',
-          description: ''
-        },        
         uri: {
           label: 'URI',
           description: 'Uniform Resource Identifier'
-        },        
-        name: {
-          label: 'Name',
-          description: 'Name.'
         },
-        text: {
-          label: 'Teksti',
-          description: 'Name.'
+        prefLabel: {
+          label: 'Label',
+          description: `
+            Preferred label
+          `
         },
-        sectionLabel: {
-          label: 'Kappale',
-          description: 'Name.'
-        },        
-        lawLabel: {
-          label: 'Laki',
-          description: 'Name.'
-        }        
-
+        abstract: {
+          label: 'Abstract',
+          description: `
+            Abstract
+          `
+        },
+        court: {
+          label: 'Court',
+          description: `
+            Name of the court
+          `
+        },
+        decisionDate: {
+          label: 'Decision date',
+          description: `
+            Judgement date
+          `
+        },
+        enforcementDate: {
+          label: 'Enforcement date',
+          description: `
+            Enforcement date
+          `
+        }
       }
-    },    
+    },
     statutes: {
       label: 'Statutes',
       mainPageLabel: 'Legislation: Statutes',

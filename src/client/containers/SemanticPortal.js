@@ -65,8 +65,18 @@ import {
   clientFSClearResults,
   clientFSUpdateQuery,
   clientFSUpdateFacet,
-  fetchKnowledgeGraphMetadata  
+  fetchKnowledgeGraphMetadata
 } from '../actions'
+
+import {
+  updateSituationQuery,
+  updateSituationSelected,
+  addSituationKeyword,
+  removeSituationKeyword,
+  fetchSituationResults,
+  clearAllSituations,
+  updateResultType
+} from '../reducers/lawsampo/situationsFacets'
 // import { filterResults } from '../selectors'
 
 const useStyles = makeStyles(theme => ({
@@ -328,7 +338,7 @@ const SemanticPortal = props => {
                 </Grid>}
             />
             {/* routes for faceted search perspectives */}
-            {perspectiveConfig.map(perspective => {              
+            {perspectiveConfig.map(perspective => {
               if (!has(perspective, 'externalUrl') && perspective.id !== 'placesClientFS') {
                 return (
                   <React.Fragment key={perspective.id}>
@@ -356,25 +366,27 @@ const SemanticPortal = props => {
                                   updateSituationSelected={props.updateSituationSelected}
                                   addSituationKeyword={props.addSituationKeyword}
                                   removeSituationKeyword={props.removeSituationKeyword}
-                      
+                                  clearAllSituations={props.clearAllSituations}
                                   fetchSituationResults={props.fetchSituationResults}
                                 />
                               </Grid>
                               <Grid item xs={12} md={9} className={classes.resultsContainer}>
                                 <Situations
-                                    facetResults={props[`${perspective.id}`]}
-                                    facetData={props[`${perspective.id}Facets`]}
-                                    perspective={perspective}
-                                    routeProps={routeProps}
-                                    screenSize={screenSize}
-                                    rootUrl={rootUrlWithLang}
-                                  />
+                                  updateResultType={props.updateResultType}
+                                  fetchSituationResults={props.fetchSituationResults}
+                                  facetResults={props[`${perspective.id}`]}
+                                  facetData={props[`${perspective.id}Facets`]}
+                                  perspective={perspective}
+                                  routeProps={routeProps}
+                                  screenSize={screenSize}
+                                  rootUrl={rootUrlWithLang}
+                                />
                               </Grid>
                             </Grid>
                           </>
                         )
                       }}
-                    />                    
+                    />
                     <Route
                       path={`${rootUrlWithLang}/${perspective.id}/faceted-search`}
                       render={routeProps => {
@@ -676,15 +688,9 @@ const mapStateToProps = state => {
     error: state.error
   }
 }
-
-import {
-  updateSituationQuery, 
-  updateSituationSelected,
-  addSituationKeyword,
-  removeSituationKeyword,
-  fetchSituationResults
-} from '../reducers/lawsampo/situationsFacets'
 const mapDispatchToProps = ({
+  updateResultType,
+  clearAllSituations,
   addSituationKeyword,
   removeSituationKeyword,
   updateSituationQuery,
