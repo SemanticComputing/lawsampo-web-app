@@ -2,15 +2,12 @@ import axios from 'axios'
 
 const baseUrl = 'http://localhost:5000/'
 
-
 export const fetchClassifierCategories = async () => {
   const response = await axios.post(baseUrl + 'categories')
   return response.data
 }
 export const fetchClassifierResults = async (resultType, query, keywords, category) => {
-
   try {
-       
     if (resultType === 'statutes') {
       const response = await axios.post(baseUrl + 'statutes', {
         query: query,
@@ -18,8 +15,7 @@ export const fetchClassifierResults = async (resultType, query, keywords, catego
         category: category
       })
       return response.data
-    }
-    else {
+    } else {
       const response = await axios.post(baseUrl + 'cases', {
         query: query,
         selected_keywords: keywords,

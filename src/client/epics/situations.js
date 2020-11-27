@@ -14,7 +14,7 @@ import {
   backendErrorText
 } from '../configs/lawsampo/GeneralConfig'
 
-import { updateSituationResults, updateSituations } from '../reducers/lawsampo/situationsFacets'
+import { updateSituationResults } from '../reducers/lawsampo/situationsFacets'
 const apiUrl = process.env.API_URL
 
 export const fetchSituations = (action$, state$) => action$.pipe(
@@ -42,9 +42,6 @@ export const fetchSituations = (action$, state$) => action$.pipe(
       }
     }
 
-
-
-    console.log(body)
     const requestUrl = `${apiUrl}/classifier`
     return ajax({
       url: requestUrl,
@@ -55,7 +52,7 @@ export const fetchSituations = (action$, state$) => action$.pipe(
       body: body
     }).pipe(
       map(ajaxResponse => {
-        const { query, results, selected_keywords, suggested_keywords, suggested_categories } = ajaxResponse.response        
+        const { results, suggested_keywords, suggested_categories } = ajaxResponse.response        
         return updateSituationResults({
           resultClass: 'situations',
           suggestedKeywords: suggested_keywords,

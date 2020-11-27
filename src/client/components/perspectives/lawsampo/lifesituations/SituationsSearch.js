@@ -85,8 +85,6 @@ class SituationsSearch extends React.Component {
     }
 
     handleSituationChange = treeObj => event => {
-        console.log(treeObj.node);
-        console.log(this.props)
         this.props.updateSituationSelected({selectedSituation: treeObj.node})
         this.props.fetchSituationResults()
          
