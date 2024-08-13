@@ -1,0 +1,185 @@
+{
+    "id": "statutesHistory",
+    "endpoint": {
+        "url": "https://ldf.fi/lawsampo/sparql",
+        "useAuth": true,
+        "prefixesFile": "SparqlQueriesPrefixes.js"
+    },
+    "sparqlQueriesFile": "SparqlQueriesLegislationHistory.js",
+    "baseURI": "http://ldf.fi/lawsampo",
+    "URITemplate": "<BASE_URI>/<LOCAL_ID>",
+    "facetClass": "lss:Statute",
+    "langTag": "fi",
+    "frontPageImage": "lawsampo/statutes_cropped.jpg",
+    "searchMode": "faceted-search",
+    "defaultActiveFacets": [
+        "jenaText"
+    ],
+    "defaultTab": "table",
+    "defaultInstancePageTab": "history",
+    "resultClasses": {
+        "statutesHistory": {
+            "paginatedResultsConfig": {
+                "tabID": 0,
+                "component": "ResultTableStatuteHistory",
+                "tabPath": "table",
+                "tabIcon": "CalendarViewDay",
+                "propertiesQueryBlock": "statutePropertiesFacetResults",
+                "pagesize": 20,
+                "sortBy": "prefLabel",
+                "sortDirection": "asc"
+            },
+            "instanceConfig": {
+                "propertiesQueryBlock": "statutePropertiesInstancePage",
+                "instancePageResultClasses": {
+                    "instancePageContextualContentStatuteHistory": {
+                        "tabID": 0,
+                        "component": "ContextualContentStatuteHistory",
+                        "tabPath": "history",
+                        "tabIcon": "History"
+                    },
+                    "instancePageContextualContent": {
+                        "tabID": 1,
+                        "component": "ContextualContent",
+                        "tabPath": "current",
+                        "tabIcon": "Subject"
+                    },
+                    "instancePageTable": {
+                        "tabID": 2,
+                        "component": "InstancePageTable",
+                        "tabPath": "table",
+                        "tabIcon": "CalendarViewDay"
+                    },
+                    "instancePageExport": {
+                        "tabID": 3,
+                        "component": "Export",
+                        "tabPath": "export",
+                        "tabIcon": "ArrowForward",
+                        "pageType": "instancePage"
+                    }
+                }
+            }
+        },
+        "export": {
+            "tabID": 1,
+            "component": "Export",
+            "tabPath": "export",
+            "tabIcon": "ArrowForward",
+            "resultClass": "statutesHistory",
+            "facetClass": "statutesHistory"
+        },
+        "knowledgeGraphMetadata": {
+            "sparqlQuery": "knowledgeGraphMetadataQuery"
+        }
+    },
+    "properties": [
+        {
+            "id": "prefLabel",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": false,
+            "sortValues": false,
+            "numberedList": false
+        },
+        {
+            "id": "statuteType",
+            "valueType": "string",
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": false,
+            "numberedList": false
+        },
+        {
+            "id": "identifier",
+            "valueType": "string",
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": false,
+            "numberedList": false
+        },
+        {
+            "id": "enforcementDate",
+            "valueType": "string",
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": false,
+            "numberedList": false
+        },
+        {
+            "id": "firstLevel",
+            "valueType": "sectionOfALaw",
+            "makeLink": true,
+            "externalLink": false,
+            "sortValues": false,
+            "numberedList": false
+        },
+        {
+            "id": "subjectCategory",
+            "onlyOnInstancePage": true,
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": true,
+            "sortValues": false,
+            "numberedList": false
+        },
+        {
+            "id": "situationCategory",
+            "onlyOnInstancePage": true,
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": true,
+            "sortValues": false,
+            "numberedList": false
+        },
+        {
+            "id": "finlexLink",
+            "valueType": "object",
+            "onlyOnInstancePage": true,
+            "makeLink": true,
+            "externalLink": true,
+            "sortValues": false,
+            "numberedList": false
+        },
+        {
+            "id": "smurLink",
+            "valueType": "object",
+            "onlyOnInstancePage": true,
+            "makeLink": true,
+            "externalLink": true,
+            "sortValues": false,
+            "numberedList": false
+        },
+        {
+            "id": "heLink",
+            "valueType": "object",
+            "onlyOnInstancePage": true,
+            "makeLink": true,
+            "externalLink": true,
+            "sortValues": false,
+            "numberedList": false
+        },
+        {
+            "id": "lakitutkaLink",
+            "valueType": "object",
+            "onlyOnInstancePage": true,
+            "makeLink": true,
+            "externalLink": true,
+            "sortValues": false,
+            "numberedList": false
+        },
+          {
+            "id": "uri",
+            "valueType": "object",
+            "onlyOnInstancePage": true,
+            "makeLink": true,
+            "externalLink": true,
+            "sortValues": false,
+            "numberedList": false
+        }
+    ],
+    "facets": {
+        "prefLabel": {
+            "sortByPredicate": "skos:prefLabel"
+        }
+    }
+}

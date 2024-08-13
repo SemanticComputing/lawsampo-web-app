@@ -83,7 +83,9 @@ export default {
     network: 'network',
     export: 'export',
     statutes: 'Statutes',
-    cases: 'Case Law'
+    cases: 'Case Law',
+    history: 'history',
+    current: 'current version'
   },
   table: {
     rowsPerPage: 'Rows per page',
@@ -380,6 +382,188 @@ export default {
           description: `
           Link to the statute in Säädösmuutosten hakemisto
         `
+        }
+      }
+    },
+    statutesHistory: {
+      label: 'Statute history',
+      mainPageLabel: 'Statute history',
+      facetResultsType: 'statutes',
+      shortDescription: 'Inspect statute version history',
+      longDescription: `
+        <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+        In this view, you can examine the statute version history of Finnish legislation.
+        </p>
+        <p>
+        NB! The feature is still incomplete, and the legislative history is currently available for only a few statutes.
+        Therefore, the result list on this page shows only those statutes for which the legislative history is available.
+        At this time, filters cannot be used. The 'by year' tab is also not available.
+        </p>
+        <p>
+          The result view can be selected using the tabs:
+        </p>
+        <ul class="MuiTypography-root MuiTypography-body1">
+        <li>
+            <strong>TABLE</STRONG> view shows all statutes in the result set. One table row corresponds to one statute.
+        </li>
+        <li>
+          <strong>EXPORT</strong> tab contains a link to open the SPARQL query used to generate the result
+          table view into YASGUI query editor. This is intended for software developers.
+        </li>
+      </ul>
+      `,
+      instancePage: {
+        label: 'Statute',
+        description: `
+        <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+          This page shows the section-by-section version history of a single statute, the consolidated version of the statute, and the statute's metadata.
+          <br/>
+          NB! The feature is incomplete and the change history of the statute may contain errors.
+          <br/>
+          The view includes four tabs:
+        </p>
+        <ul class="MuiTypography-root MuiTypography-body1">
+          <li>
+            The <strong>HISTORY</STRONG> tab shows the section-by-section version history of the statute.
+          </li>
+          <li>
+            The <strong>CURRENT VERSION</STRONG> tab shows the current consolidated version of the statute.
+          </li>
+          <li>
+            The <strong>TABLE</STRONG> tab shows the metadata of the statute.
+          </li>
+          <li>
+            The <strong>EXPORT</strong> tab contains a link to open the SPARQL query used to get the statute information
+            into YASGUI query editor. This is intended for software developers.
+          </li>
+        </ul>
+        `
+      },
+      properties: {
+        uri: {
+          label: 'URI',
+          description: 'Statute Uniform Resource Identifier'
+        },
+        prefLabel: {
+          label: 'Statute',
+          description: `Name of the statute
+          `
+        },
+        statute: {
+          label: 'Laws and acts',
+          description: `
+            Laws and acts
+          `
+        },
+        jenaText: {
+          label: 'Free text search',
+          textFacetInputPlaceholder: 'Search...',
+          description: `
+            Search statutes based on their textual contents
+          `
+        },
+        text: {
+          label: 'Teksti',
+          description: `
+            Teksti
+          `
+        },
+        identifier: {
+          label: 'TunnIdentifieriste',
+          description: `
+          Identifier
+          `
+        },
+        firstLevel: {
+          label: 'Sections',
+          description: `
+            Sections
+          `
+        },
+        subjectCategory: {
+          label: 'Subject keyword (automatically identified)',
+          description: `
+            Subject keyword identified automatically from the statute contents
+          `
+        },
+        situationCategory: {
+          label: 'Life situation / topic (automatically identified)',
+          description: `
+          Life situation or topic identified automatically from the statute contents
+          `
+        },
+        documentType: {
+          label: 'Document type',
+          description: `
+          Document type
+          `
+        },
+        statuteType: {
+          label: 'Statute type',
+          description: `
+          Statute type
+          `
+        },
+        enforcementDate: {
+          label: 'Voimaantulo',
+          description: `
+            Säädöksen uusimman version voimaantulopäivämäärä
+          `
+        },
+        euDirective: {
+          label: 'EU-direktiivi',
+          missingValueLabel: 'ei direktiiviä',
+          description: `
+            Säädöksen viittaama EU-direktiivi
+          `
+        },
+        statuteHistory: {
+          label: 'Säädöshistoria',
+          description: `
+            Näytä vain säädökset, joille on saatavissa historiatiedot
+          `
+        },
+        finlexLink: {
+          label: 'Linkki Finlex-palveluun',
+          description: `
+            Linkki säädökseen Finlex-palvelussa
+          `
+        },
+        smurLink: {
+          label: 'Linkki Säädösmuutosten hakemistoon',
+          description: `
+            Linkki säädökseen Säädösmuutosten hakemistossa
+          `
+        },
+        heLink: {
+          label: 'Linkki hallituksen esitykseen',
+          description: `
+            Linkki hallituksen esitykseen (eduskunta.fi)
+          `
+        },
+        lakitutkaLink: {
+          label: 'Linkki Lakitutkaan',
+          description: `
+            Linkki hallituksen esitykseen Lakitutkassa
+          `
+        },
+        wordcloud: {
+          label: 'Sanapilvi',
+          description: `
+            Sanapilvi
+          `
+        },
+        contentHTML: {
+          label: 'Säädöksen sisältö',
+          description: `
+            Säädöksen sisältö
+          `
+        },
+        contentHTMLAnnotated: {
+          label: 'Säädöksen kontekstuaalinen sisältö',
+          description: `
+            Säädöksen kontekstuaalinen sisältö
+          `
         }
       }
     },

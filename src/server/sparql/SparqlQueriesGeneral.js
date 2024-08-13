@@ -15,6 +15,16 @@ export const countQuery = `
   }
 `
 
+export const countQueryStatuteHistory = `
+  SELECT (COUNT(DISTINCT ?id) as ?count)
+  WHERE {
+    <FILTER>
+    FILTER (STR(?id) IN ("http://ldf.fi/lawsampo/statute_eli_sd_2014_932", "http://ldf.fi/lawsampo/statute_eli_sd_2012_22", "http://ldf.fi/lawsampo/statute_eli_sd_2009_558", "http://ldf.fi/lawsampo/statute_eli_sd_2008_373", "http://ldf.fi/lawsampo/statute_eli_sd_2007_1438", "http://ldf.fi/lawsampo/statute_eli_sd_1993_1501"))
+    VALUES ?facetClass { <FACET_CLASS> }
+    ?id a ?facetClass .
+  }
+`
+
 export const jenaQuery = `
   SELECT *
   WHERE {
@@ -44,6 +54,25 @@ export const facetResultSetQuery = `
       }
       <ORDER_BY>
       <PAGE>
+    }
+    FILTER(BOUND(?id))
+    <RESULT_SET_PROPERTIES>
+  }
+`
+
+export const facetResultSetQueryStatuteHistory = `
+  SELECT *
+  WHERE {
+    {
+      # score and literal are used only for Jena full text index
+      SELECT DISTINCT ?id ?score ?literal {
+        <FILTER>
+        VALUES ?facetClass { <FACET_CLASS> }
+        ?id a ?facetClass .
+        FILTER (STR(?id) IN ("http://ldf.fi/lawsampo/statute_eli_sd_2014_932", "http://ldf.fi/lawsampo/statute_eli_sd_2012_22", "http://ldf.fi/lawsampo/statute_eli_sd_2009_558", "http://ldf.fi/lawsampo/statute_eli_sd_2008_373", "http://ldf.fi/lawsampo/statute_eli_sd_2007_1438", "http://ldf.fi/lawsampo/statute_eli_sd_1993_1501"))
+        <ORDER_BY_TRIPLE>
+      }
+      <ORDER_BY>
     }
     FILTER(BOUND(?id))
     <RESULT_SET_PROPERTIES>

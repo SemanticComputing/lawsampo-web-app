@@ -84,7 +84,9 @@ export default {
     network: 'verkosto',
     export: 'avaa yasgui-sovelluksessa',
     statutes: 'Lainsäädäntö',
-    cases: 'Oikeustapaukset'
+    cases: 'Oikeustapaukset',
+    history: 'historia',
+    current: 'ajantasainen versio'
   },
   table: {
     rowsPerPage: 'Riviä sivulla',
@@ -369,13 +371,200 @@ export default {
             Linkki hallituksen esitykseen (eduskunta.fi)
           `
         },
-         lakitutkaLink: {
+        lakitutkaLink: {
           label: 'Linkki Lakitutkaan',
           description: `
             Linkki hallituksen esitykseen Lakitutkassa
           `
         },
-         wordcloud: {
+        wordcloud: {
+          label: 'Sanapilvi',
+          description: `
+            Sanapilvi
+          `
+        },
+        contentHTML: {
+          label: 'Säädöksen sisältö',
+          description: `
+            Säädöksen sisältö
+          `
+        },
+        contentHTMLAnnotated: {
+          label: 'Säädöksen kontekstuaalinen sisältö',
+          description: `
+            Säädöksen kontekstuaalinen sisältö
+          `
+        }
+      }
+    },
+    statutesHistory: {
+      label: 'Säädöshistoria',
+      mainPageLabel: 'Säädöshistoria',
+      facetResultsType: 'säädöstä',
+      shortDescription: 'Tarkastele säädösten muutoshistoriaa\n (HUOM! Keskeneräinen ominaisuus, nähtävissä vain muutamalle säädökselle)',
+      longDescription: `
+        <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+          Tässä näkymässä voit tarkastella Suomen lainsäädännön muutoshistoriaa.
+        </p>
+        <p>
+        HUOM!
+         Ominaisuus on vielä keskeneräinen ja säädöshistoria on toistaiseksi saatavilla vain muutamalle säädökselle. 
+         Tämän sivun tuloslistassa näytetään vain ne säädökset, joille säädöshistoria on saatavilla. 
+         Tulosten suodattamiseen ei toistaiseksi voi käyttää suodattimia. Myöskään vuosinäkymä-välilehti ei ole käytössä.
+        </p>
+        <p>
+          Tulosnäkymä voidaan valita näkymän välilehdiltä:
+        </p>
+        <ul class="MuiTypography-root MuiTypography-body1">
+        <li>
+          <strong>TIEDOT</STRONG>-välilehti näyttää kaikki tulosjoukon säädökset taulukkona, jossa yksi rivi vastaa yhtä säädöstä.
+          Säädösten tiedot näkyvät tulostaulukossa sarakkeittain, säädöksen nimen toimiessa linkkinä säädöksen tietosivulle.
+        </li>
+        <li>
+          <strong>AVAA YASGUI-SOVELLUKSESSA</strong>-välilehti sisältää linkin
+          tulosjoukon palauttavan kyselyn avaamiseen YASGUI-sovelluksessa. Tämä välilehti on tarkoitettu sovelluskehittäjille. Avattavaa tulosjoukkoa voi rajata myös tässä näkymässä käyttämällä
+          vasemmalla olevien valikkojen arvoja.
+        </li>
+      </ul>
+      `,
+      instancePage: {
+        label: 'Säädös',
+        description: `
+        <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+          Tämä sivu näyttää yhden säädöksen pykäläkohtaisen versiohistorian, säädöksen ajantasaisen sisällön sekä säädöksen metatiedot.
+          </p>
+          <p>
+          <strong>HUOM! Ominaisuus on keskeneräinen ja säädöksen muutoshistoriassa saattaa olla virheitä ja puutteita.</strong>
+          </p>
+          <p>
+          Näkymä sisältää neljä välilehteä:
+        </p>
+        <ul class="MuiTypography-root MuiTypography-body1">
+          <li>
+            <strong>HISTORIA</STRONG>-välilehti näyttää säädöksen muutoshistorian pykäläkohtaisesti.
+          </li>
+          <li>
+            <strong>AJANTASAINEN VERSIO</STRONG>-välilehti näyttää säädöksen ajantasaisen version tekstin.
+          </li>
+          <li>
+            <strong>TIEDOT</STRONG>-välilehti näyttää säädöksen metatiedot.
+          </li>
+          <li>
+            <strong>AVAA YASGUI-SOVELLUKSESSA</strong>-välilehti sisältää linkin
+            säädöksen tiedot palauttavan kyselyn avaamiseen YASGUI-sovelluksessa. Tämä välilehti on tarkoitettu sovelluskehittäjille.
+          </li>
+        </ul>
+        `
+      },
+      properties: {
+        uri: {
+          label: 'URI-tunniste',
+          description: 'Säädöksen Uniform Resource Identifier -tunniste'
+        },
+        prefLabel: {
+          label: 'Säädös',
+          description: `Säädöksen nimi
+          `
+        },
+        statute: {
+          label: 'Laws and acts',
+          description: `
+            Laws and acts
+          `
+        },
+        jenaText: {
+          label: 'Vapaatekstihaku',
+          textFacetInputPlaceholder: 'Hae...',
+          description: `
+            Hae säädöksiä niiden tekstisisältöjen perusteella
+          `
+        },
+        text: {
+          label: 'Teksti',
+          description: `
+            Teksti
+          `
+        },
+        identifier: {
+          label: 'Tunniste',
+          description: `
+            Säädöksen tunniste
+          `
+        },
+        firstLevel: {
+          label: 'Pykälät',
+          description: `
+            Pykälät
+          `
+        },
+        subjectCategory: {
+          label: 'Aihe (autom. tunnistettu)',
+          description: `
+            Säädöksen sisällön perusteella automaattisesti tunnistettu aihe
+          `
+        },
+        situationCategory: {
+          label: 'Elämän aihepiiri (autom. tunnistettu)',
+          description: `
+            Säädöksen sisällön perusteella automaattisesti tunnistettu säädökseen liittyvä elämäntilanne
+          `
+        },
+        documentType: {
+          label: 'Dokumenttiluokka',
+          description: `
+            Dokumenttiluokka
+          `
+        },
+        statuteType: {
+          label: 'Säädöksen tyyppi',
+          description: `
+            Säädöksen tyyppi
+          `
+        },
+        enforcementDate: {
+          label: 'Voimaantulo',
+          description: `
+            Säädöksen uusimman version voimaantulopäivämäärä
+          `
+        },
+        euDirective: {
+          label: 'EU-direktiivi',
+          missingValueLabel: 'ei direktiiviä',
+          description: `
+            Säädöksen viittaama EU-direktiivi
+          `
+        },
+        statuteHistory: {
+          label: 'Säädöshistoria',
+          description: `
+            Säädökset, joille on saatavissa historiatiedot
+          `
+        },
+        finlexLink: {
+          label: 'Linkki Finlex-palveluun',
+          description: `
+            Linkki säädökseen Finlex-palvelussa
+          `
+        },
+        smurLink: {
+          label: 'Linkki Säädösmuutosten hakemistoon',
+          description: `
+            Linkki säädökseen Säädösmuutosten hakemistossa
+          `
+        },
+        heLink: {
+          label: 'Linkki hallituksen esitykseen',
+          description: `
+            Linkki hallituksen esitykseen (eduskunta.fi)
+          `
+        },
+        lakitutkaLink: {
+          label: 'Linkki Lakitutkaan',
+          description: `
+            Linkki hallituksen esitykseen Lakitutkassa
+          `
+        },
+        wordcloud: {
           label: 'Sanapilvi',
           description: `
             Sanapilvi

@@ -8,7 +8,9 @@ import expressStaticGzip from 'express-static-gzip'
 import { createBackendSearchConfig } from './sparql/Utils'
 import {
   getResultCount,
+  getResultCountStatuteHistory,
   getPaginatedResults,
+  getPaginatedResultsStatuteHistory,
   getAllResults,
   getByURI
 } from './sparql/FacetResults'
@@ -75,17 +77,31 @@ createBackendSearchConfig().then(backendSearchConfig => {
   app.post(`${apiPath}/faceted-search/:resultClass/paginated`, async (req, res, next) => {
     const { params, body } = req
     try {
-      const data = await getPaginatedResults({
-        backendSearchConfig,
-        resultClass: params.resultClass,
-        page: body.page,
-        pagesize: parseInt(body.pagesize),
-        sortBy: body.sortBy,
-        sortDirection: body.sortDirection,
-        constraints: body.constraints,
-        resultFormat: 'json'
-      })
-      res.json(data)
+      if (params.resultClass === 'statutesHistory') {
+        const data = await getPaginatedResultsStatuteHistory({
+          backendSearchConfig,
+          resultClass: params.resultClass,
+          page: body.page,
+          pagesize: parseInt(body.pagesize),
+          sortBy: body.sortBy,
+          sortDirection: body.sortDirection,
+          constraints: body.constraints,
+          resultFormat: 'json'
+        })
+        res.json(data)
+      } else {
+        const data = await getPaginatedResults({
+          backendSearchConfig,
+          resultClass: params.resultClass,
+          page: body.page,
+          pagesize: parseInt(body.pagesize),
+          sortBy: body.sortBy,
+          sortDirection: body.sortDirection,
+          constraints: body.constraints,
+          resultFormat: 'json'
+        })
+        res.json(data)
+      }
     } catch (error) {
       console.log(error)
       next(error)
@@ -154,13 +170,23 @@ createBackendSearchConfig().then(backendSearchConfig => {
   app.post(`${apiPath}/faceted-search/:resultClass/count`, async (req, res, next) => {
     const { params, body } = req
     try {
-      const data = await getResultCount({
-        backendSearchConfig,
-        resultClass: params.resultClass,
-        constraints: body.constraints,
-        resultFormat: 'json'
-      })
-      res.json(data)
+      if (params.resultClass === 'statutesHistory') {
+        const data = await getResultCountStatuteHistory({
+          backendSearchConfig,
+          resultClass: params.resultClass,
+          constraints: body.constraints,
+          resultFormat: 'json'
+        })
+        res.json(data)
+      } else {
+        const data = await getResultCount({
+          backendSearchConfig,
+          resultClass: params.resultClass,
+          constraints: body.constraints,
+          resultFormat: 'json'
+        })
+        res.json(data)
+      }
     } catch (error) {
       next(error)
     }

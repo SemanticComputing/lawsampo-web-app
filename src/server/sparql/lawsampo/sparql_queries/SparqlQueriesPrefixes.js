@@ -23,4 +23,5 @@ export const prefixes = `
   PREFIX lss: <http://ldf.fi/schema/lawsampo/>
   PREFIX ls: <http://ldf.fi/lawsampo/>
   PREFIX sd: <http://www.w3.org/ns/sparql-service-description#>
+  PREFIX sfl: <http://data.finlex.fi/schema/sfl/>
   `

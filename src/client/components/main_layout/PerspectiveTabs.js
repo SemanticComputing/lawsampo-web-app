@@ -23,7 +23,7 @@ const pathnameToTabValue = (location, tabs) => {
  */
 const PerspectiveTabs = props => {
   const { tabs, layoutConfig } = props
-  const variant = tabs.length > 3 ? 'scrollable' : 'fullWidth'
+  const variant = tabs.length > 4 ? 'scrollable' : 'fullWidth'
   // const largeScreen = screenSize === 'xl'
   // const scrollButtons = tabs.length > 3 ? 'auto' : 'on'
   const location = useLocation()

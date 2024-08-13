@@ -4,6 +4,7 @@ import { Route, useLocation } from 'react-router-dom'
 import { has } from 'lodash'
 // import LineChartSotasurmat from '../perspectives/sotasurmat/LineChartSotasurmat'
 const ResultTable = lazy(() => import('./ResultTable'))
+const ResultTableStatuteHistory = lazy(() => import('../perspectives/lawsampo/statuteHistory/ResultTableStatuteHistory'))
 const InstancePageTable = lazy(() => import('../main_layout/InstancePageTable'))
 const ReactVirtualizedList = lazy(() => import('./ReactVirtualizedList'))
 const LeafletMap = lazy(() => import('./LeafletMap'))
@@ -12,6 +13,7 @@ const ApexCharts = lazy(() => import('./ApexCharts'))
 const Network = lazy(() => import('./Network'))
 const VideoPage = lazy(() => import('../main_layout/VideoPage'))
 const ContextualContent = lazy(() => import('../main_layout/ContextualContent'))
+const ContextualContentStatuteHistory = lazy(() => import('../perspectives/lawsampo/statuteHistory/ContextualContentStatuteHistory'))
 const WordCloud = lazy(() => import('../main_layout/WordCloud'))
 const TemporalMap = lazy(() => import('./TemporalMap'))
 const BarChartRace = lazy(() => import('./BarChartRace'))
@@ -54,6 +56,25 @@ const ResultClassRoute = props => {
     case 'ResultTable':
       routeComponent = (
         <ResultTable
+          portalConfig={portalConfig}
+          perspectiveConfig={perspective}
+          data={perspectiveState}
+          facetUpdateID={facetState.facetUpdateID}
+          resultClass={resultClass}
+          facetClass={facetClass}
+          fetchPaginatedResults={props.fetchPaginatedResults}
+          updatePage={props.updatePage}
+          updateRowsPerPage={props.updateRowsPerPage}
+          sortResults={props.sortResults}
+          rootUrl={rootUrl}
+          layoutConfig={layoutConfig}
+          location={useLocation()}
+        />
+      )
+      break
+    case 'ResultTableStatuteHistory':
+      routeComponent = (
+        <ResultTableStatuteHistory
           portalConfig={portalConfig}
           perspectiveConfig={perspective}
           data={perspectiveState}
@@ -370,6 +391,28 @@ const ResultClassRoute = props => {
           path={path}
           render={() =>
             <ContextualContent {...ccProps} />}
+        />
+      )
+      break
+    }
+    case 'ContextualContentStatuteHistory': {
+      const { instanceTableData } = perspectiveState
+      const ccProps = {
+        data: instanceTableData.sections,
+        statuteVersions: instanceTableData.statuteVersions,
+        tableOfContents: instanceTableData.firstLevel,
+        tableOfContentsConfig: perspectiveState.properties.find(item => item.id === 'firstLevel'),
+        hasParts: instanceTableData.hasParts,
+        hasChapters: instanceTableData.hasChapters,
+        HTMLParserTask: 'addAnnotationTooltips',
+        referencedTerm: instanceTableData.referencedTerm,
+        layoutConfig
+      }
+      routeComponent = (
+        <Route
+          path={path}
+          render={() =>
+            <ContextualContentStatuteHistory {...ccProps} />}
         />
       )
       break
