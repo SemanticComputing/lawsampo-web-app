@@ -115,7 +115,7 @@
         }
     },
     "documentFinderConfig": {
-        "apiURL": "https://data.finlex.fi/document-finder-backend"
+        "apiURL": "https://lakisampo.fi/document-finder-backend"
     },
     "temporalMapConfig": {
         "sliderDuration": {
